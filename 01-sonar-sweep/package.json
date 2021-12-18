@@ -4,6 +4,10 @@
   "main": "index.js",
   "author": "Arnaud Béguin",
   "license": "MIT",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "test": "jest"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
