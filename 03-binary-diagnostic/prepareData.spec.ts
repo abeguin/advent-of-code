@@ -1,67 +1,38 @@
-import { prepareData, prepareDataForPart2 } from './prepareData';
+import { prepareData, stringToBits } from './prepareData';
+import { Bit } from './types';
 
 describe('prepareData', () => {
-    it('should transform a list of string in number', () => {
+    it('should transform a list of bits into a matrix of Bit', () => {
         // Given
-        const input = `1
-         2
-         3
-         4`;
-
-        // When
-        const res = prepareData(input);
-
-        // Then
-        expect(res).toEqual([ 1, 2, 3, 4 ]);
-    });
-
-
-    it('when input cannot be converted to number, should be filtered', () => {
-        // Given
-        const input = `1
-        x
-        3
-        4
-        
+        const input = `10101
+        00001
+        11111
+        10110
         `;
 
         // When
-        const res = prepareData(input);
+        const res: Bit[][] = prepareData(input);
 
         // Then
-        expect(res).toEqual([ 1, 3, 4 ]);
+        expect(res).toEqual([
+            [ 1, 0, 1, 0, 1 ],
+            [ 0, 0, 0, 0, 1 ],
+            [ 1, 1, 1, 1, 1 ],
+            [ 1, 0, 1, 1, 0 ],
+        ]);
     });
 });
 
-describe('prepareDataForPart2', () => {
-    it('should transform a list of string in a sum of number', () => {
+describe('stringToBits', () => {
+    it('should transform a string of bits into an array of Bit', () => {
         // Given
-        const input = `1
-         2
-         3
-         4`;
+        const input = '101011';
 
         // When
-        const res = prepareDataForPart2(input);
+        const res = stringToBits(input);
 
         // Then
-        expect(res).toEqual([ 6, 9 ]);
+        expect(res).toEqual([ 1, 0, 1, 0, 1, 1 ]);
     });
 
-
-    it('when input cannot be converted to number, should be filtered', () => {
-        // Given
-        const input = `1
-        x
-        3
-        4
-        
-        `;
-
-        // When
-        const res = prepareDataForPart2(input);
-
-        // Then
-        expect(res).toEqual([ 8 ]);
-    });
 });
