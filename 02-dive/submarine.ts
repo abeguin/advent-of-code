@@ -1,6 +1,7 @@
 export class Submarine {
     #xPos: number = 0;
     #depth: number = 0;
+    #aim: number = 0;
 
     get result(): number {
         return this.#xPos * this.#depth;
@@ -8,17 +9,18 @@ export class Submarine {
 
     forward(x: number): void {
         this.#xPos += x;
+        this.#depth += this.#aim * x;
     }
 
     down(y: number): void {
-        this.#depth += y;
+        this.#aim += y;
     }
 
     up(y: number): void {
-        this.#depth -= y;
+        this.#aim -= y;
     }
 
     toString(): string {
-        return `horizontal position: ${this.#xPos}, depth: ${this.#depth}`;
+        return `horizontal position: ${this.#xPos}, depth: ${this.#depth}, aim: ${this.#aim}`;
     }
 }
